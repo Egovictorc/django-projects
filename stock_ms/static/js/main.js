@@ -1,7 +1,5 @@
-import { CountUp } from 'countup.js';
+import { CountUp } from './countup.ts';
 
 windows.onload = function () {
-
-    const salesCount = document.getElementById("sales-count");
-    const demo = new CountUp(salesCount, 1000,  {enableScrollSpy: true });
+    const demo = new CountUp("sales-count", 1000,  {enableScrollSpy: true });
 }
