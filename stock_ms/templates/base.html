@@ -50,10 +50,9 @@
                         <b>Let&apos;s stay in touch</b>
                         <span>Subscribe to our news letter</span>
                         <div class="flex gap-x-2">
-                            <input placeholder="Email Address" type="email" />
-                            <Button>Subscribe</Button>
+                            {% include 'forms/textfield.html' with label='Label' placeholder="Email Address" name="email" %}
+                            <button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block">Subscribe</button>
                         </div>
-
                     </article>
                     <div class="flex justify-between max-w-[200px] py-5 text-primary-500 dark:text-slate-300">
                         <a href="#">

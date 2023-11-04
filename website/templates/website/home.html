@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Home | Stock_MS {% endblock %}
+
+{% block body %}
+
+<!-- header begins here -->
+<header class="flex flex-col md:flex-row h-screen justify-center items-center md:justify-end gap-x-12 py-16 px-4">
+    <div class="flex max-w-[500px] basis-2/5 flex-col justify-center gap-y-12 text-center md:text-left">
+        <h1 class="text-5xl lg:text-6xl font-semibold leading-tight sm:leading-tight md:leading-tight lg:leading-tight">
+            Buy your quality Products at
+            <span class="uppercase text-primary-600">Stock_sm</span>
+        </h1>
+        <p class="text-2xl">
+            We offer state-of-the-Art experience. Products that align with your brand, meets your clients expectations,
+            and put you ahead
+        </p>
+        <div>
+            <a href="#" class="font-semibold px-6 py-2 border border-blue-500 rounded-full inline-block">
+                Buy Now
+            </a>
+        </div>
+        <div className="flex justify-between">
+            <!-- {count: 14, label: "Websites", suffix: "+"},
+            {count: 100, label: "Happy Clients", suffix: "+"},
+            {count: 100, label: "Customer Satisfaction", suffix: "%"}, -->
+            <p className="flex flex-col">
+                <span class="text-2xl font-semibold" id="sales-count"> </span>
+                <span> Sales</span>
+            </p>
+        </div>
+    </div>
+    <div class="hidden md:flex relative basis-3/5 w-full h-[450px] lg:h-[900px] self-center">
+        <img src="{% static 'images/home/home_hero.png' %}" alt="Home dero" class="object-contain" />
+    </div>
+</header>
+<!-- header ends here -->
+
+<!-- services begins here -->
+{% include 'website/home-sections/services.html' %}
+<!-- services ends here -->
+
+<!-- top-selling begins here -->
+{% include 'website/home-sections/top-selling.html' %}
+<!-- top-selling ends here -->
+
+<!-- discount begins here -->
+{% include 'website/home-sections/discount.html' %}
+<!-- discount ends here -->
+
+<!-- main begins here-->
+<main>
+
+</main>
+<!-- main ends here -->
+{% endblock %}

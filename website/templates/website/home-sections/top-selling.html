@@ -1,0 +1,45 @@
+{% load static %}
+
+<section class="w-full dark:bg-slate-800 py-24">
+    <div class="container max-w-screen-xl  text-center px-5">
+        <h2 class="font-semibold text-2xl sm:text-3xl md:text-4xl leading-tight"> Top Selling Items </h2>
+        <p class="mt-4 text-xl lg:text-2xl mb-12 px-4 max-w-screen-md mx-auto">Curated list of our available products given you a wide range of options to choose from</p>
+        <div
+            class="flex flex-col md:flex-row items-center md:items-stretch justify-around xl:justify-between py-8 gap-y-16 gap-x-8 flex-wrap">
+
+            <div
+                class="w-[90vw] max-w-sm pt-20 pb-12 drop-shadow-xl border border-slate-500 rounded-lg dark:bg-slate-800 dark:text-slate-200">
+                <div class="py-2 px-10 text-center">
+                    <div class="w-full h-24  mx-auto mb-8">
+                        <img src="{% static 'images/products/Hisense_smart_uhd_1.jpg' %}" alt="hisense" width="100%" height="200px" />
+                    </div>
+                    <h3 class="font-semibold text-2xl">Laptop</h3>
+                    <p class="text-lg lg:text-xl text-slate-600 dark:text-slate-200">Lorem ipsum, dolor sit amet
+                        consectetur adipisicing elit. Eligendi, nostrum! Culpa quisquam  </p>
+                </div>
+            </div>
+            <div
+                class="w-[90vw] max-w-sm pt-20 pb-12 drop-shadow-xl border border-slate-500 rounded-lg dark:bg-slate-800 dark:text-slate-200">
+                <div class="py-2 px-10 text-center">
+                    <div class="relative w-24 h-24  mx-auto mb-8">
+                        <img src="" alt="" />
+                    </div>
+                    <h3 class="font-semibold text-2xl">Smart Television</h3>
+                    <p class="text-lg lg:text-xl text-slate-600 dark:text-slate-200">Lorem ipsum, dolor sit amet
+                        consectetur adipisicing elit. Eligendi, nostrum! Culpa  </p>
+                </div>
+            </div>
+            <div
+                class="w-[90vw] max-w-sm pt-20 pb-12 drop-shadow-xl border border-slate-500 rounded-lg dark:bg-slate-800 dark:text-slate-200">
+                <div class="py-2 px-10 text-center">
+                    <div class="relative w-24 h-24  mx-auto mb-8">
+                        <img src="" alt="" />
+                    </div>
+                    <h3 class="font-semibold text-2xl">Phone </h3>
+                    <p class="text-lg lg:text-xl text-slate-600 dark:text-slate-200">Lorem ipsum, dolor sit amet
+                        consectetur adipisicing elit. Eligendi, nostrum! Culpa quisquam </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

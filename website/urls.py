@@ -1,4 +1,4 @@
-from website  import views
+from . import views
 
 """
 URL configuration for stock_ms project.

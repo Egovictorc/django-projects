@@ -37,8 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     "django_browser_reload",
-    "stock_ms"
+    "django_browser_reload",
+    'tailwind',
+    "website"
+]
+
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+TAILWIND_APP_NAME = "website"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 MIDDLEWARE = [

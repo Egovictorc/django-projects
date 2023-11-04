@@ -1,0 +1,139 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> {% block title %} {% endblock %} </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap"
+		rel="stylesheet">
+
+	{% tailwind_css %}
+</head>
+
+<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+		<nav class=" absolute top-0 left-0 w-full z-20 transparent py-5 ">
+			<div class="container flex justify-between">
+				<p class="font-bold text-2xl">
+					SOM_STORE
+				</p>
+	
+				<ul class="flex gap-x-4 ">
+					<li><a href="#" class="text-slate-700 hover:text-slate-600 duration-200">Home</a></li>
+					<li><a href="#" class="text-slate-700 hover:text-slate-600 duration-200">About</a></li>
+					<li><a href="#" class="text-slate-700 hover:text-slate-600 duration-200">Contact</a></li>
+					<li><a href="#" class="text-slate-700 hover:text-slate-600 duration-200">Products</a></li>
+				</ul>
+			</div>
+		</nav>
+	
+		{% block body %}
+	
+		{% endblock %}
+	
+		<!-- footer begins -->
+		<footer class="w-full px-5 py-16 border-t dark:border-slate-700">
+			<div class="lg:container flex flex-col mx-auto">
+	
+				<!-- <img src=" {% static 'images/portrait_1.jpg' %}" class="w-20 h-8" /> -->
+				<p class="font-bold">STOCK MS</p>
+				<div class="flex flex-col sm:flex-row gap-x-8 gap-y-8 justify-between mt-5">
+					<div class="flex flex-col flex-1 max-w-sm gap-y-4">
+						<p>We&apos;re dedicated to providing the best quality products at affordable prices. We&apos;re
+							tested and trusted</p>
+						<article class="flex flex-col gap-y-1">
+							<b>Let&apos;s stay in touch</b>
+							<span>Subscribe to our news letter</span>
+							<div class="flex gap-x-2">
+								{% include 'website/forms/textfield.html' with label='Label' placeholder="Email Address" name="email" %}
+								<button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block">Subscribe</button>
+							</div>
+						</article>
+						<div class="flex justify-between max-w-[200px] py-5 text-primary-500 dark:text-slate-300">
+							<a href="#">
+								<box-icon type='logo' name='facebook'></box-icon>
+							</a>
+							<a href="#">
+								<box-icon type='logo' name='instagram'></box-icon>
+							</a>
+							<a href="#">
+								<box-icon type='logo' name='twitter'></box-icon>
+							</a>
+							<a href="#">
+								<box-icon type='logo' name='linkedin'></box-icon>
+							</a>
+						</div>
+					</div>
+					<div class="flex flex-wrap basis-3/5 gap-x-3  gap-y-4  justify-between">
+						<div class="max-w-[200px]">
+							<h5 class="font-semibold uppercase whitespace-nowrap">Partners</h5>
+							<ul>
+								<li>
+									<Link href="" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">
+									Hiring Partners</Link>
+								</li>
+								<li>
+									<Link href="#" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">
+									Sponsors</Link>
+								</li>
+							</ul>
+						</div>
+						<div class="max-w-[200px]">
+							<h5 class="font-semibold uppercase whitespace-nowrap">Legal</h5>
+							<ul>
+								<li>
+									<Link href="" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">Terms
+									and Condition</Link>
+								</li>
+								<li>
+									<Link href="#" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">
+									Privacy Policy</Link>
+								</li>
+							</ul>
+						</div>
+						<div class="max-w-[200px]">
+							<h5 class="font-semibold uppercase whitespace-nowrap">Quick Links</h5>
+							<ul>
+								<li>
+									<Link href="" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">Home
+									</Link>
+								</li>
+								<li>
+									<Link href="#" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">
+									About</Link>
+								</li>
+							</ul>
+						</div>
+						<div class="max-w-[200px]">
+							<h5 class="font-semibold uppercase whitespace-nowrap">Contact</h5>
+							<ul>
+								<li>
+									<Link href="" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">
+									support@stock_ms.info</Link>
+								</li>
+								<li>
+									<Link href="#" class="hover:opacity-90 text-sm hover:underline dark:text-slate-300">
+									+4631012309123</Link>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<span class="block py-2">© {% now "Y" %}. All rights reserved</span>
+			</div>
+		</footer>
+		<!-- footer ends -->
+	
+		<!-- boxicons set url -->
+		<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+	<!-- countup script -->
+		<script src="{% static 'js/main.js' %}" type="module"></script>
+	</body>
+
+</html>
