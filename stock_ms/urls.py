@@ -1,4 +1,3 @@
-from website  import views
 
 """
 URL configuration for stock_ms project.
@@ -20,8 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('about-us', views.about, name='about-us'),
+    path('', include("website.urls")),
     path('admin/', admin.site.urls),
      path("__reload__/", include("django_browser_reload.urls")),
 

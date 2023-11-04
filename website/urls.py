@@ -19,8 +19,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+app_name = "website"
+
 urlpatterns = [
     path('', views.home, name='home'),
+    path('products', views.products, name='products'),
+    path('products/<str:title>', views.singleProduct, name='single-product'),
     path('about-us', views.about, name='about-us'),
     path('admin/', admin.site.urls),
      path("__reload__/", include("django_browser_reload.urls")),
