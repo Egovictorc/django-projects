@@ -1,16 +1,18 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Product
 
 def home(request):
     # return HttpResponse("Hello world")
     return render(request, "website/home.html")
 
-def products(request):
+def productsView(request):
+    products = Product.objects.all()
     # return HttpResponse("Hello world")
-    return render(request, "website/products/products.html")
+    return render(request, "website/products/products.html", {"products": products})
 
-def singleProduct(request, title):
+def singleProductView(request, title):
     # return HttpResponse("Hello world")
     return render(request, "website/single-product/single-product.html", {"title": title})
 
