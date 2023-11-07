@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Register | Stock_MS {% endblock %}
+
+{% block body %}
+<div class="container py-36">
+    <div class="max-w-md mx-auto">
+        {% if messages %}
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+
+        {% endif %}
+        <h2 class="font-semibold text-2xl mb-4">Create Account</h2>
+        <form method="post" class="">
+            {% csrf_token %}
+            {% include 'website/forms/textfield.html' with label='Full Name' placeholder="Fullname" name="name" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Email' placeholder="Email Address" name="email" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Phone' placeholder="Phone number" name="phone" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Label' placeholder="Password" name="password" %} <br />
+            
+
+            <button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block">Sign up</button>
+        </form>
+        <p class="text-center text-sm mt-4">By signing up, you agree to our terms of service and our privacy policy</p>
+
+    </div>
+</div>
+{% endblock %}

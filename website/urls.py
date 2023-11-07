@@ -28,4 +28,11 @@ urlpatterns = [
     path('about-us', views.about, name='about-us'),
     path('admin/', admin.site.urls),
      path("__reload__/", include("django_browser_reload.urls")),
+    # auth urls
+    path('auth/login', views.login_view, name='login'),
+    path('auth/register', views.register_view, name='register'),
+    
+    # dashboard
+    path('dashbaord/index', views.dashboard, name='dashboard'),
+    
 ]

@@ -17,7 +17,7 @@
 	{% tailwind_css %}
 </head>
 
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal ">
 		<nav class=" absolute top-0 left-0 w-full z-20 transparent py-5 ">
 			<div class="container flex justify-between">
 				<p class="font-bold text-2xl">
@@ -29,6 +29,7 @@
 					<li><a href="#" class="text-slate-700 hover:text-slate-600 duration-200">About</a></li>
 					<li><a href="#" class="text-slate-700 hover:text-slate-600 duration-200">Contact</a></li>
 					<li><a href="{% url 'website:products' %}" class="text-slate-700 hover:text-slate-600 duration-200">Products</a></li>
+					<li><a href="{% url 'website:login' %}" class="text-slate-700 hover:text-slate-600 duration-200">Login</a></li>
 				</ul>
 			</div>
 		</nav>

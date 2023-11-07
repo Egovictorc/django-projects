@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Login | Stock_MS {% endblock %}
+
+{% block body %}
+
+<div class="container py-36">
+    <div class="max-w-md mx-auto">
+        {% if messages %}
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+
+        {% endif %}
+        <h2 class="font-semibold text-2xl mb-4">Welcome back</h2>
+        <p class="ml-auto flex justify-end mb-1">
+            <a href="{% url 'website:register' %}" class="underline text-sm"> Don&apos;t have account?</a>
+        </p>
+        <form method="post" class="">
+            {% csrf_token %}
+            {% include 'website/forms/textfield.html' with label='Label' placeholder="Email Address" name="email" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Label' placeholder="Password" name="password" %}
+            <p class="ml-auto flex justify-end mb-1">
+                <a href="{% url 'website:register' %}" class="underline text-sm"> forgot password?</a> <br />
+            </p>
+            <button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block">Login</button>
+        </form>
+        <p class="text-center text-sm mt-4">By signing in, you agree to our terms of service and our privacy policy</p>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -23,7 +23,7 @@ class Product(models.Model):
     image_2 = models.FileField(upload_to= "products")
     image_3 = models.FileField(upload_to= "products", null = True, blank = True)
     price = models.DecimalField(decimal_places= 2, max_digits= 8)
-    top_selling = models.BooleanField()
+    top_selling = models.BooleanField(default=False)
     discount = models.IntegerField()
     quantity = models.IntegerField()
     
