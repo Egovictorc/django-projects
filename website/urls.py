@@ -30,9 +30,10 @@ urlpatterns = [
      path("__reload__/", include("django_browser_reload.urls")),
     # auth urls
     path('auth/login', views.login_view, name='login'),
+    path('auth/logout', views.logout_view, name='logout'),
     path('auth/register', views.register_view, name='register'),
-    
+
     # dashboard
-    path('dashbaord/index', views.dashboard, name='dashboard'),
+    path('dashbaord', views.dashboard, name='dashboard'),
     
 ]

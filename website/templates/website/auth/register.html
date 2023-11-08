@@ -8,14 +8,15 @@
     <div class="max-w-md mx-auto">
         {% if messages %}
         {% for message in messages %}
-        {{message}}
+       <p class="text-red-400"> {{message}}</p>
         {% endfor %}
 
         {% endif %}
         <h2 class="font-semibold text-2xl mb-4">Create Account</h2>
         <form method="post" class="">
             {% csrf_token %}
-            {% include 'website/forms/textfield.html' with label='Full Name' placeholder="Fullname" name="name" %}
+            {% include 'website/forms/textfield.html' with label='First Name' placeholder="First Name" name="first_name" %}<br />
+            {% include 'website/forms/textfield.html' with label='Last Name' placeholder="Last Name" name="last_name" %}
             <br />
             {% include 'website/forms/textfield.html' with label='Email' placeholder="Email Address" name="email" %}
             <br />
