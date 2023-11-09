@@ -35,5 +35,6 @@ urlpatterns = [
 
     # dashboard
     path('dashbaord', views.dashboard, name='dashboard'),
+    path('dashbaord/account', views.user_account, name='user_account'),
     
 ]

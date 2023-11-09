@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product
 
+def user_account(request):
+    return render(request, "website/dashboard/account.html")
+
 def dashboard(request):
     return render(request, "website/dashboard/index.html")
     

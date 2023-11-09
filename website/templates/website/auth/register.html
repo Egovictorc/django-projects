@@ -13,6 +13,9 @@
 
         {% endif %}
         <h2 class="font-semibold text-2xl mb-4">Create Account</h2>
+        <p class="ml-auto flex justify-end mb-1">
+            <a href="{% url 'website:login' %}" class="underline text-sm text-blue-800"> Have an account?</a>
+        </p>
         <form method="post" class="">
             {% csrf_token %}
             {% include 'website/forms/textfield.html' with label='First Name' placeholder="First Name" name="first_name" %}<br />

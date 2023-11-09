@@ -1,0 +1,20 @@
+<aside class=" pb-14 h-screen bg-slate-300 border-r-2">
+    <nav class=" z-20 transparent py-5 ">
+        <div class="container">
+            <a href="{% url 'website:home' %}" class="block font-bold text-2xl text-center">
+                SOM_STORE
+            </a>
+            <p class="my-4 capitalize font-semibold text-center">Hi {{ user.get_short_name}}</p>
+
+            <ul class="flex flex-col w-60 ">
+                <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:user_account' %}"
+                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Account</a></li>
+                <li class="border-b-2 hover:bg-slate-400"><a href="#"
+                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Orders</a></li>
+                <li class="border-b-2 hover:bg-slate-400"><a href="#"
+                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Settings</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</aside>
