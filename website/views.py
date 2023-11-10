@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product
 
+def user_setting(request):
+    return render(request, "website/dashboard/setting.html")
+
 def user_account(request):
     return render(request, "website/dashboard/account.html")
 
@@ -80,7 +83,7 @@ def singleProductView(request, title):
         pass
     elif request.method == "GET":
         target = Product.objects.get(name= title)
-        return render(request, "website/single-product/single-product.html", {"product": product})
+        return render(request, "website/single-product/single-product.html", {"product": target})
 
 def about(request):
     return HttpResponse("Welcome to About us")

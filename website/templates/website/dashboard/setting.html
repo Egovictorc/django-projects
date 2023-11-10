@@ -1,0 +1,37 @@
+{% extends 'website/dashboard/base.html' %}
+{% load static %}
+
+{% block title %} User Account | Stock_MS {% endblock %}
+
+
+{% block body %}
+
+<div class="container my-12">
+    <h2 class="text-2xl mb-6 font-semibold ">Update User Profile</h2>
+    <div class="flex flex-col gap-y-6 max-w-xl">
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-red-400"> {{message}}</p>
+        {% endfor %}
+
+        {% endif %}
+        <form method="post" class="">
+            {% csrf_token %}
+            {% include 'website/forms/textfield.html' with label='First Name' placeholder="First Name" name="first_name" default_value="{{user.first_name}}" %} <br />
+            {% include 'website/forms/textfield.html' with label='Last Name' placeholder="Last Name" name="last_name" default_value="{{user.last_name}}" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Email' placeholder="Email Address" name="email" default_value="{{user.email}}" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Phone' placeholder="Phone number" name="phone" default_value="{{user.phone}}" %}
+            <br />
+            {% include 'website/forms/textfield.html' with label='Label' placeholder="Password" name="password" default_value="{{user.first_name}}" %}
+            <br />
+
+            <button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block">Update now</button>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock %}
