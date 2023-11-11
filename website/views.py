@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product
 
+def user_orders(request):
+    return render(request, "website/dashboard/orders.html")
+
 def user_setting(request):
     return render(request, "website/dashboard/setting.html")
 
@@ -25,17 +28,25 @@ def login_view(request):
     if request.method == "POST":
         email = request.POST["email"]
         password = request.POST["password"]
-        
-        user = authenticate(request, username=email, password = password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, "You have been Logged in Successfully")
-            return redirect("website:dashboard")
-        else:
-            messages.success(request, "There was an error login in")
-            # return redirect("dashboard")
-        print("email ", email)
-        print("password ", password)
+
+        try:
+            # check if user already exists
+            existing_user = User.objects.get(username=email.strip())
+            # authenticate user
+            user = authenticate(request, username=email, password = password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "You have been Logged in Successfully")
+                return redirect("website:dashboard")
+            else:
+                messages.success(request, "User record not found")
+                # return redirect("dashboard")
+            print("email ", email)
+            print("password ", password)
+        except User.DoesNotExist:
+            messages.success(request, "User record not found")
+        except Exception as e:
+           render(request, e)
     return render(request, "website/auth/login.html")
 
 def register_view(request):
@@ -45,20 +56,36 @@ def register_view(request):
         password = request.POST["password"]
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
-        name = ""
+        
+        print("email ", email)
+        print("first_name ", first_name)
+        print("last_name ", last_name)
+        
         if email and password and first_name and last_name:
-            # check if user already exists
-            existing_user = User.objects.get(username=email)
-            if existing_user:
-                messages.success(request, "User already exists, pls sign in")
-                return redirect("website:login")
-            user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password,
-                                            username=email)
-            if user is not None:
-                messages.success(request, "Account created successfully")
-                return redirect("website/auth/login.html")
-            messages.success(request, "Error occured when creating account")
-            return render(request, "website/auth/register.html")
+            try:
+                # check if user already exists
+                existing_user = User.objects.get(username=email)
+                if existing_user:
+                    messages.success(request, "User already exists, please sign in")
+                    return redirect("website:login")
+
+                # create a new user if user does not exist
+                user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password,
+                                                username=email)
+                if user is not None:
+                    messages.success(request, "Account created successfully")
+                    return redirect("website:login")
+                messages.success(request, "Error occured when creating account")
+                return render(request, "website/auth/register.html")
+            except User.DoesNotExist:
+                user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password, username=email)
+                if user is not None:
+                    messages.success(request, "Account created successfully")
+                    return redirect("website:login")
+                messages.success(request, "Error occured when creating account")
+                return render(request, "website/auth/register.html")
+            except Exception as e:
+                messages.success(request, e)
         else:
             messages.success(request, "All fields are required")
             return render(request, "website/auth/register.html")

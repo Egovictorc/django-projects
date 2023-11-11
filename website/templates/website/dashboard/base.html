@@ -41,9 +41,11 @@
                     </li>
                 </ul>
             </nav>
-            {% block body %}
-            {% endblock %}
 
+            <div class="container py-8">
+                {% block body %}
+                {% endblock %}
+            </div>
         </div>
         {% else %}
         <p>user not found</p>
