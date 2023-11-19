@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product
+from .forms import ProductForm
 
 def user_orders(request):
     return render(request, "website/dashboard/orders.html")
@@ -48,6 +49,7 @@ def login_view(request):
         except Exception as e:
            render(request, e)
     return render(request, "website/auth/login.html")
+
 
 def register_view(request):
     # return HttpResponse("Hello world")
@@ -111,6 +113,19 @@ def singleProductView(request, title):
     elif request.method == "GET":
         target = Product.objects.get(name= title)
         return render(request, "website/single-product/single-product.html", {"product": target})
+
+
+# dashboard pages
+def add_product_view(request):
+    # return HttpResponse("Hello world")
+    if request.method == "POST":
+        product_form = ProductForm(request.POST)
+        if product_form.is_valid():
+            pass
+        pass
+    elif request.method == "GET":
+        product_form = ProductForm()
+        return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
 
 def about(request):
     return HttpResponse("Welcome to About us")

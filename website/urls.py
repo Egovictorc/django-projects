@@ -38,5 +38,8 @@ urlpatterns = [
     path('dashbaord/account', views.user_account, name='user_account'),
     path('dashbaord/settings', views.user_setting, name='user_setting'),
     path('dashbaord/orders', views.user_orders, name='user_orders'),
-    
+
+    # manage products
+    path('dashbaord/products', views.add_product_view, name='add_product'),
+
 ]

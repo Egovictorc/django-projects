@@ -12,8 +12,13 @@ class ProductCategory(models.Model):
     def __str__(self) -> str:
         return f"{self.name}: {self.description}"
 
+class ProductCategory(models.Model):
+    name = models.CharField(null=False, blank= False)
+    description = models.CharField(null=False, blank= False)
 
 class Product(models.Model):
+    category = models.ForeignKey("ProductCategory", models.CASCADE)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=35)
