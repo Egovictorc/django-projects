@@ -8,7 +8,7 @@
     <div class="max-w-md mx-auto">
         {% if messages %}
         {% for message in messages %}
-       <p class="text-red-400"> {{message}}</p>
+        <p class="text-red-400"> {{message}}</p>
         {% endfor %}
 
         {% endif %}
@@ -18,15 +18,20 @@
         </p>
         <form method="post" class="">
             {% csrf_token %}
-            {% include 'website/forms/textfield.html' with label='First Name' placeholder="First Name" name="first_name" %}<br />
-            {% include 'website/forms/textfield.html' with label='Last Name' placeholder="Last Name" name="last_name" %}
-            <br />
-            {% include 'website/forms/textfield.html' with label='Email' placeholder="Email Address" name="email" %}
-            <br />
-            {% include 'website/forms/textfield.html' with label='Phone' placeholder="Phone number" name="phone" %}
-            <br />
-            {% include 'website/forms/textfield.html' with label='Label' placeholder="Password" name="password" %} <br />
-            
+
+            <div class="flex flex-col gap-y-2 max-w-screen-xl mb-4">
+                <p class=" flex flex-col">
+                    {{ form.first_name.as_field_group }}</p>
+                <p class=" flex flex-col">
+                    {{ form.last_name.as_field_group }}</p>
+                <p class=" flex flex-col">
+                    {{ form.email.as_field_group }}</p>
+                <p class=" flex">
+                    {{ form.user_category.as_field_group }}</p>
+
+                <p class=" flex flex-col">
+                    {{ form.password.as_field_group }}</p>
+            </div>
 
             <button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block">Sign up</button>
         </form>

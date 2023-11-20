@@ -1013,6 +1013,11 @@ select {
        column-gap: 1rem;
 }
 
+.gap-x-5 {
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
+}
+
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
@@ -1028,6 +1033,10 @@ select {
 
 .gap-y-16 {
   row-gap: 4rem;
+}
+
+.gap-y-2 {
+  row-gap: 0.5rem;
 }
 
 .gap-y-4 {
@@ -1050,9 +1059,8 @@ select {
   row-gap: 2rem;
 }
 
-.gap-x-5 {
-  -moz-column-gap: 1.25rem;
-       column-gap: 1.25rem;
+.self-start {
+  align-self: flex-start;
 }
 
 .self-center {

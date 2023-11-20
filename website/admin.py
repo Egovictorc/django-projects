@@ -9,3 +9,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Product, ProductAdmin)
+
+class ProductCategoryAdmin(admin.ModelAdmin):
+    readonly_fields = ("created_at", "updated_at")
+    list_display = ("name", "description")
+
+
+admin.site.register(models.ProductCategory, ProductCategoryAdmin)

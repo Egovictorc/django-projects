@@ -34,12 +34,13 @@ urlpatterns = [
     path('auth/register', views.register_view, name='register'),
 
     # dashboard
-    path('dashbaord', views.dashboard, name='dashboard'),
-    path('dashbaord/account', views.user_account, name='user_account'),
-    path('dashbaord/settings', views.user_setting, name='user_setting'),
-    path('dashbaord/orders', views.user_orders, name='user_orders'),
+    path('dashboard', views.dashboard, name='dashboard'),
+    path('dashboard/account', views.user_account, name='user_account'),
+    path('dashboard/settings', views.user_setting, name='user_setting'),
+    path('dashboard/orders', views.user_orders, name='user_orders'),
 
     # manage products
-    path('dashbaord/products', views.add_product_view, name='add_product'),
+    path('dashboard/products', views.products_dashboard_view, name='products_dashboard'),
+    path('dashboard/products/add-product', views.add_product_view, name='add_product'),
 
 ]

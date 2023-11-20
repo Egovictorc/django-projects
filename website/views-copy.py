@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -6,39 +6,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product
 from .forms import ProductForm, UserForm
-@login_required
+
 def user_orders(request):
     return render(request, "website/dashboard/orders.html")
-@login_required
+
 def user_setting(request):
     return render(request, "website/dashboard/setting.html")
-@login_required
+
 def user_account(request):
     return render(request, "website/dashboard/account.html")
 
-@login_required
 def dashboard(request):
     return render(request, "website/dashboard/index.html")
-
-@login_required
-def products_dashboard_view(request):
-    products = Product.objects.all()
-    return render(request, "website/dashboard/products/index.html", {"products": products})
-
-@login_required
-def add_product_view(request):
-
-    # return HttpResponse("Hello world")
-    if request.method == "POST":
-        product_form = ProductForm(request.POST)
-        if product_form.is_valid():
-            cleaned_form = product_form.cleaned_data
-            pass
-        pass
-    elif request.method == "GET":
-        product_form = ProductForm()
-        return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
-
     
 def logout_view(request):
     logout(request)
@@ -78,23 +57,26 @@ def register_view(request):
         product_form = ProductForm(request.POST)
         if product_form.is_valid():
             cleaned_form = product_form.cleaned_data
-            print("cleaned form ", cleaned_form)
+        email = request.POST["email"]
+        password = request.POST["password"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
 
+        print("email ", email)
+        print("first_name ", first_name)
+        print("last_name ", last_name)
+
+        if email and password and first_name and last_name:
             try:
                 # check if user already exists
-                existing_user = User.objects.get(username=cleaned_form["email"])
+                existing_user = User.objects.get(username=email)
                 if existing_user:
                     messages.success(request, "User already exists, please sign in")
                     return redirect("website:login")
 
                 # create a new user if user does not exist
-                email = cleaned_form["email"]
-                password = cleaned_form["password"]
-                first_name = cleaned_form["first_name"]
-                last_name = cleaned_form["last_name"]
-                user_category = cleaned_form["user_category"]
                 user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password,
-                                                username=email, is_staff = user_category == "staff")
+                                                username=email)
                 if user is not None:
                     messages.success(request, "Account created successfully")
                     return redirect("website:login")
@@ -109,7 +91,9 @@ def register_view(request):
                 return render(request, "website/auth/register.html")
             except Exception as e:
                 messages.success(request, e)
-
+        else:
+            messages.success(request, "All fields are required")
+            return render(request, "website/auth/register.html")
     register_form = UserForm
     return render(request, "website/auth/register.html", {"form": register_form})
 
@@ -133,7 +117,20 @@ def singleProductView(request, title):
         target = Product.objects.get(name= title)
         return render(request, "website/single-product/single-product.html", {"product": target})
 
+
 # dashboard pages
+def add_product_view(request):
+
+    # return HttpResponse("Hello world")
+    if request.method == "POST":
+        product_form = ProductForm(request.POST)
+        if product_form.is_valid():
+            cleaned_form = product_form.cleaned_data
+            pass
+        pass
+    elif request.method == "GET":
+        product_form = ProductForm()
+        return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
 
 def about(request):
     return HttpResponse("Welcome to About us")

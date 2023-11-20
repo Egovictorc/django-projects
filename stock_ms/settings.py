@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "website"
 ]
 
+LOGIN_URL = "website:login"
+
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 TAILWIND_APP_NAME = "website"
 

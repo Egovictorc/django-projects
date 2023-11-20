@@ -6,15 +6,12 @@ class ProductCategory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=35)
     description = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="product-categories")
-    # image = models.ImageField(upload_to= "products")
-    
+
+    class Meta:
+        verbose_name_plural = 'Product Categories'
+
     def __str__(self) -> str:
         return f"{self.name}: {self.description}"
-
-class ProductCategory(models.Model):
-    name = models.CharField(null=False, blank= False)
-    description = models.CharField(null=False, blank= False)
 
 class Product(models.Model):
     category = models.ForeignKey("ProductCategory", models.CASCADE)
@@ -34,3 +31,4 @@ class Product(models.Model):
     
     def __str__(self) -> str:
         return f"{self.name}: {self.description}"
+
