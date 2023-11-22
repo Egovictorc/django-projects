@@ -1,10 +1,25 @@
 
 from django.contrib.auth.models import User
 from django import forms
-from .models import Product
+from .models import Product, ProductCategory
 
+
+class ProductCategoryForm(forms.ModelForm):
+    name = forms.CharField(label = "Category Name", min_length=3)
+    description = forms.CharField(widget=forms.Textarea(attrs={"rows":"5"}), label="Category Description", min_length=3)
+
+    class Meta:
+        model = ProductCategory
+        fields = ["name", "description"]
 
 class ProductForm(forms.ModelForm):
+    #categories = [("Phones", "phones"),("Laptop", "laptop"),]
+    categories = []
+    _categories = ProductCategory.objects.all().values()
+
+    for _ in _categories:
+        print(_)
+        categories.append((_["name"], _["name"]))
 
     name = forms.CharField(label = "Product Name", min_length=3)
     description = forms.CharField(widget=forms.Textarea(attrs={"rows":"5"}), label="Product Description", min_length=3)
@@ -16,9 +31,10 @@ class ProductForm(forms.ModelForm):
     top_selling = forms.BooleanField()
     discount = forms.IntegerField()
     quantity = forms.IntegerField()
+    category = forms.ChoiceField(label="Product Category", choices=categories)
     class Meta:
         model = Product
-        fields = ["name", "description", "featured_image", "price", "top_selling", "discount", "quantity", "image_1", "image_2", "image_3"]
+        fields = ["name", "description", "featured_image", "price", "top_selling", "discount", "quantity", "image_1", "image_2", "image_3", "category"]
 
 
 class UserForm(forms.ModelForm):

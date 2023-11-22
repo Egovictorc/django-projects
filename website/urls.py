@@ -40,6 +40,7 @@ urlpatterns = [
     path('dashboard/orders', views.user_orders, name='user_orders'),
 
     # manage products
+    path('dashboard/product-category', views.product_category_view, name='product_category'),
     path('dashboard/products', views.products_dashboard_view, name='products_dashboard'),
     path('dashboard/products/add-product', views.add_product_view, name='add_product'),
 

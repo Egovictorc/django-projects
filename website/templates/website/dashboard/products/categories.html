@@ -1,0 +1,58 @@
+{% extends 'website/dashboard/base.html' %}
+{% load static %}
+
+{% block title %} Add Product | Stock_MS {% endblock %}
+
+
+{% block body %}
+{% if user.is_superuser %}
+
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-left text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="col" class="px-6 py-4">Id</th>
+              <th scope="col" class="px-6 py-4">Category Name</th>
+              <th scope="col" class="px-6 py-4">Category Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for c in categories %}
+          <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium"> {{c.id}} </td>
+              <td class="whitespace-nowrap px-6 py-4"> {{c.name}} </td>
+              <td class="whitespace-nowrap px-6 py-4"> {{c.description}} </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="text-2xl mb-4 mt-8 font-semibold ">New Category</h2>
+<div class="flex flex-col gap-y-6">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="flex flex-col gap-y-5 max-w-screen-xl">
+            <div class="flex gap-x-5">
+                <p class="basis-2/3 flex flex-col">
+                    {{ form.name.as_field_group }}
+                </p>
+            </div>
+            <div class="flex gap-x-5">
+                <p class="basis-2/3 flex flex-col">
+                    {{ form.description.as_field_group }}
+                </p>
+            </div>
+            <button class="font-semibold px-4 py-2 border border-blue-500 rounded-lg inline-block self-start">Add category</button>
+        </div>
+    </form>
+
+</div>
+{% endif %}
+{% endblock %}

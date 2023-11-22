@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Product
-from .forms import ProductForm, UserForm
+from .models import Product, ProductCategory
+from .forms import ProductForm,ProductCategoryForm, UserForm
 @login_required
 def user_orders(request):
     return render(request, "website/dashboard/orders.html")
@@ -21,21 +21,51 @@ def dashboard(request):
     return render(request, "website/dashboard/index.html")
 
 @login_required
+def product_category_view(request):
+    if request.method == "POST":
+        category_form = ProductCategoryForm(request.POST)
+        if category_form.is_valid():
+            cleaned_form = category_form.cleaned_data
+            name = cleaned_form["name"]
+            description = cleaned_form["description"]
+            c = ProductCategory(name = name, description = description)
+            c.save()
+    categories = ProductCategory.objects.all()
+    category_form = ProductCategoryForm()
+    return render(request, "website/dashboard/products/categories.html", {"categories": categories, "form": category_form})
+
+@login_required
 def products_dashboard_view(request):
     products = Product.objects.all()
     return render(request, "website/dashboard/products/index.html", {"products": products})
 
 @login_required
 def add_product_view(request):
-
     # return HttpResponse("Hello world")
     if request.method == "POST":
         product_form = ProductForm(request.POST)
+        cleaned_form = product_form.cleaned_data
+
+        print("cleaned form ", cleaned_form)
         if product_form.is_valid():
             cleaned_form = product_form.cleaned_data
-            pass
-        pass
-    elif request.method == "GET":
+            print("cleaned form ", cleaned_form)
+
+            name = cleaned_form["name"]
+            description = cleaned_form["description"]
+            price = cleaned_form["price"]
+            discount = cleaned_form["discount"]
+            quantity = cleaned_form["quantity"]
+            top_selling = cleaned_form["top_selling"]
+            image_1 = cleaned_form["image_1"]
+            image_2 = cleaned_form["image_2"]
+            image_3 = cleaned_form["image_3"]
+            featured_image = cleaned_form["featured_image"]
+
+            product = Product(name=name, top_selling=top_selling, quantity=quantity, price=price, discount=discount, description=description, image_1=image_1, image_2=image_2, image_3=image_3)
+            product.save()
+            return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
+    else:
         product_form = ProductForm()
         return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
 
