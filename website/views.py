@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product, ProductCategory
-from .forms import ProductForm,ProductCategoryForm, UserForm
+from .forms import ProductForm, ProductCategoryForm, UserForm
 @login_required
 def user_orders(request):
     return render(request, "website/dashboard/orders.html")
@@ -44,9 +44,7 @@ def add_product_view(request):
     # return HttpResponse("Hello world")
     if request.method == "POST":
         product_form = ProductForm(request.POST)
-        cleaned_form = product_form.cleaned_data
 
-        print("cleaned form ", cleaned_form)
         if product_form.is_valid():
             cleaned_form = product_form.cleaned_data
             print("cleaned form ", cleaned_form)
@@ -65,9 +63,11 @@ def add_product_view(request):
             product = Product(name=name, top_selling=top_selling, quantity=quantity, price=price, discount=discount, description=description, image_1=image_1, image_2=image_2, image_3=image_3)
             product.save()
             return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
-    else:
-        product_form = ProductForm()
+        #messages.success(request, "Error occured when adding product")
         return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
+
+    product_form = ProductForm()
+    return render(request, "website/dashboard/products/add-product.html", {"form": product_form})
 
     
 def logout_view(request):

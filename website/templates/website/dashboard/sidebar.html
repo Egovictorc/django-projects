@@ -8,11 +8,14 @@
 
             <ul class="flex flex-col w-60 ">
                 <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:user_account' %}"
-                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Account</a></li>
+                                                             class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Account</a>
+                </li>
                 <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:user_orders' %}"
-                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Orders</a></li>
+                                                             class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Orders</a>
+                </li>
                 <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:user_setting' %}"
-                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Settings</a></li>
+                                                             class="text-slate-700 hover:text-slate-600 duration-200 block py-4 px-4">Settings</a>
+                </li>
 
 
                 {% if user.is_staff %}
@@ -20,13 +23,16 @@
 
                 <ul class="flex flex-col w-full ">
                     <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:product_category' %}"
-                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 pl-8">Product Category</a></li>
+                                                                 class="text-slate-700 hover:text-slate-600 duration-200 block py-4 pl-8">Product
+                        Category</a></li>
 
-  <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:products_dashboard' %}"
-                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 pl-8">All Products</a></li>
+                    <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:products_dashboard' %}"
+                                                                 class="text-slate-700 hover:text-slate-600 duration-200 block py-4 pl-8">All
+                        Products</a></li>
 
                     <li class="border-b-2 hover:bg-slate-400"><a href="{% url 'website:add_product' %}"
-                        class="text-slate-700 hover:text-slate-600 duration-200 block py-4 pl-8 block">Add Products</a></li>
+                                                                 class="text-slate-700 hover:text-slate-600 duration-200 block py-4 pl-8 block">Add
+                        Product</a></li>
                 </ul>
                 {% endif %}
             </ul>

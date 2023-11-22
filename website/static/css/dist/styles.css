@@ -799,6 +799,10 @@ select {
   margin-bottom: 1rem;
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -955,16 +959,16 @@ select {
   flex-basis: 33.333333%;
 }
 
+.basis-2\/3 {
+  flex-basis: 66.666667%;
+}
+
 .basis-2\/5 {
   flex-basis: 40%;
 }
 
 .basis-3\/5 {
   flex-basis: 60%;
-}
-
-.basis-2\/3 {
-  flex-basis: 66.666667%;
 }
 
 .appearance-none {

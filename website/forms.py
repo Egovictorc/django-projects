@@ -1,8 +1,6 @@
-
 from django.contrib.auth.models import User
 from django import forms
 from .models import Product, ProductCategory
-
 
 class ProductCategoryForm(forms.ModelForm):
     name = forms.CharField(label = "Category Name", min_length=3)
@@ -15,12 +13,13 @@ class ProductCategoryForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     #categories = [("Phones", "phones"),("Laptop", "laptop"),]
     categories = []
-    _categories = ProductCategory.objects.all().values()
-
-    for _ in _categories:
-        print(_)
-        categories.append((_["name"], _["name"]))
-
+    try:
+        _categories = ProductCategory.objects.all().values()
+        for _ in _categories:
+            print(_)
+            categories.append((_["name"], _["name"]))
+    except Exception as e:
+        print(e)
     name = forms.CharField(label = "Product Name", min_length=3)
     description = forms.CharField(widget=forms.Textarea(attrs={"rows":"5"}), label="Product Description", min_length=3)
     featured_image = forms.ImageField()
@@ -38,7 +37,6 @@ class ProductForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-
     user_categories = [("user", "User"), ("staff", "Staff")]
     first_name = forms.CharField(label = "First Name", min_length=3, widget = forms.TextInput(attrs={"placeholder": "eg: John"}))
     last_name = forms.CharField(label = "Last Name", min_length=3, widget = forms.TextInput(attrs={"placeholder": "eg: Doe"}))
@@ -49,5 +47,3 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email", "password", "user_category"]
-
-
