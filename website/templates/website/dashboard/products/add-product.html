@@ -5,6 +5,7 @@
 
 
 {% block body %}
+{% if user.is_superuser %}
 
 <h2 class="text-2xl mb-6 font-semibold ">New Product</h2>
 <div class="flex flex-col gap-y-6">
@@ -54,4 +55,5 @@
     </form>
 
 </div>
+{% endif %}
 {% endblock %}

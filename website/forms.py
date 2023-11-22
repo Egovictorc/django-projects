@@ -24,9 +24,9 @@ class ProductForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
 
     user_categories = [("user", "User"), ("staff", "Staff")]
-    first_name = forms.CharField(label = "First Name", min_length=3)
-    last_name = forms.CharField(label = "Last Name", min_length=3)
-    email = forms.EmailField(label = "Email Address")
+    first_name = forms.CharField(label = "First Name", min_length=3, widget = forms.TextInput(attrs={"placeholder": "eg: John"}))
+    last_name = forms.CharField(label = "Last Name", min_length=3, widget = forms.TextInput(attrs={"placeholder": "eg: Doe"}))
+    email = forms.EmailField(label = "Email Address", widget = forms.TextInput(attrs={"placeholder": "abc@gmail.com"}))
     #phone_number = forms.CharField(label = "Phone Number")
     password = forms.CharField(label = "Password" , widget=forms.PasswordInput)
     user_category = forms.ChoiceField(widget=forms.RadioSelect, choices=user_categories)

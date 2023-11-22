@@ -6,6 +6,7 @@
 
 {% block body %}
 
+{% if user.is_superuser %}
 <h2 class="text-2xl mb-6 font-semibold ">All Product</h2>
 <div class="flex flex-col">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -55,4 +56,6 @@
     </div>
   </div>
 </div>
+
+{% endif %}
 {% endblock %}

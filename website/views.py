@@ -75,10 +75,16 @@ def login_view(request):
 def register_view(request):
     # return HttpResponse("Hello world")
     if request.method == "POST":
-        product_form = ProductForm(request.POST)
-        if product_form.is_valid():
-            cleaned_form = product_form.cleaned_data
+        register_form = UserForm(request.POST)
+
+        if register_form.is_valid():
+            cleaned_form =  register_form.cleaned_data
             print("cleaned form ", cleaned_form)
+            email = cleaned_form["email"]
+            password = cleaned_form["password"]
+            first_name = cleaned_form["first_name"]
+            last_name = cleaned_form["last_name"]
+            user_category = cleaned_form["user_category"]
 
             try:
                 # check if user already exists
@@ -86,27 +92,30 @@ def register_view(request):
                 if existing_user:
                     messages.success(request, "User already exists, please sign in")
                     return redirect("website:login")
-
-                # create a new user if user does not exist
-                email = cleaned_form["email"]
-                password = cleaned_form["password"]
-                first_name = cleaned_form["first_name"]
-                last_name = cleaned_form["last_name"]
-                user_category = cleaned_form["user_category"]
-                user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password,
-                                                username=email, is_staff = user_category == "staff")
-                if user is not None:
-                    messages.success(request, "Account created successfully")
-                    return redirect("website:login")
-                messages.success(request, "Error occured when creating account")
-                return render(request, "website/auth/register.html")
             except User.DoesNotExist:
-                user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password, username=email)
-                if user is not None:
-                    messages.success(request, "Account created successfully")
-                    return redirect("website:login")
-                messages.success(request, "Error occured when creating account")
-                return render(request, "website/auth/register.html")
+                # create a new super_user if user does not exist
+                if (user_category == "staff"):
+                    print("staff created ....", )
+                    user = User.objects.create_superuser(email=email, first_name=first_name, last_name=last_name,
+                                                         password=password,
+                                                         username=email)
+                    if user is not None:
+                        messages.success(request, "Account created successfully")
+                        return redirect("website:login")
+                    messages.success(request, "Error occured when creating account")
+                    return render(request, "website/auth/register.html")
+
+                else:
+                    # create a new user if user does not exist
+                    print("ordinary user created ....", )
+                    user = User.objects.create_user(email=email, first_name=first_name, last_name=last_name,
+                                                    password=password, username=email)
+
+                    if user is not None:
+                        messages.success(request, "Account created successfully")
+                        return redirect("website:login")
+                    messages.success(request, "Error occured when creating account")
+                    return render(request, "website/auth/register.html")
             except Exception as e:
                 messages.success(request, e)
 
