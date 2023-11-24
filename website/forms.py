@@ -14,10 +14,11 @@ class ProductForm(forms.ModelForm):
     #categories = [("Phones", "phones"),("Laptop", "laptop"),]
     categories = []
     try:
-        _categories = ProductCategory.objects.all().values()
+        #_categories = ProductCategory.objects.all().values()
+        _categories = ProductCategory.objects.all()
         for _ in _categories:
             print(_)
-            categories.append((_["name"], _["name"]))
+            categories.append((_, _))
     except Exception as e:
         print(e)
     name = forms.CharField(label = "Product Name", min_length=3)
